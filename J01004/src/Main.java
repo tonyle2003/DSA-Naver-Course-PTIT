@@ -8,16 +8,10 @@ public class Main {
         while (test > 0) {
             test--;
             int number = scanner.nextInt();
-            boolean flag = false;
-            for (int i = 2; i <= number / 2; i++) {
-                if (isPrime(i) && isPrime(number - i)) {
-                    System.out.println(i + " " + (number - i));
-                    flag = true;
-                    break;
-                }
-            }
-            if (flag == false) {
-                System.out.println(-1);
+            if (isPrime(number)) {
+                System.out.println("YES");
+            } else {
+                System.out.println("NO");
             }
         }
         scanner.close();
