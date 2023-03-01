@@ -19,10 +19,8 @@ bool isPrime(int number) {
 }
 
 bool isNaturalPrime(int number) {
-    if (isPrime(number) == false) {
-        return false;
-    }
     int sum = 0;
+    int box = number;
     while (number != 0) {
         if (isPrime(number % 10) == false) {
             return false;
@@ -30,7 +28,7 @@ bool isNaturalPrime(int number) {
         sum += number % 10;
         number /= 10;
     }
-    return isPrime(sum);
+    return isPrime(sum) && isPrime(box);
 }
 
 int main() {
