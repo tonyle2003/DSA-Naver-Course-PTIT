@@ -8,29 +8,19 @@ public class Main {
     public static void main(String[] args) {
         int n = scanner.nextInt();
         int m = scanner.nextInt();
-        int[] a = getArray(new int[n]);
-        Arrays.sort(a);
-        int[] b = getArray(new int[m]);
-        Arrays.sort(b);
 
-        int index1 = 0, index2 = 0;
-        while (index1 != n && index2 != m) {
-            if (a[index1] == b[index2]) {
-                System.out.print(a[index1] + " ");
-                if (index1 < n) {
-                    index1++;
-                }
-                if (index2 < m) {
-                    index2++;
-                }
-            } else if (a[index1] < b[index2]) {
-                if (index1 < n) {
-                    index1++;
-                }
-            } else {
-                if (index2 < m) {
-                    index2++;
-                }
+        int[] a = getArray(new int[n]);
+        int[] b = getArray(new int[m]);
+
+        int[] array = new int[1001];
+        for (int i = 0; i < a.length; i++) {
+            array[a[i]] = 1;
+        }
+        Arrays.sort(b);
+        for (int i = 0; i < b.length; i++) {
+            if (array[b[i]] == 1) {
+                System.out.print(b[i] + " ");
+                array[b[i]] = 0;
             }
         }
         System.out.println();
