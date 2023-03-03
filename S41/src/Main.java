@@ -34,4 +34,3 @@ public class Main {
         }
         System.out.println((long) (price % (1e9 + 7)));
     }
-}
