@@ -6,7 +6,29 @@ class Solution {
     private static Stack<Integer> stack = new Stack<>();
 
     public static void solve(String calculation) {
-        
+        for (int i = calculation.length() - 1; i >= 0; i--) {
+            if (Character.isDigit(calculation.charAt(i))) {
+                stack.add(Integer.parseInt(calculation.charAt(i) + ""));
+            } else {
+                int first = stack.pop();
+                int second = stack.pop();
+                switch (calculation.charAt(i)) {
+                    case '+':
+                        stack.add(first + second);
+                        break;
+                    case '-':
+                        stack.add(first - second);
+                        break;
+                    case '*':
+                        stack.add(first * second);
+                        break;
+                    case '/':
+                        stack.add(first / second);
+                        break;
+                }
+            }
+        }
+        System.out.println(stack.pop());
     }
 }
 
