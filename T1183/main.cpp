@@ -8,20 +8,20 @@ class UndirectedGraph {
     private:
         vector<int> *adj;
         bool *visited;
-        vector<int> *path;
 
     public:
 
         UndirectedGraph(int v) {
             adj = new vector<int>[v + 1];
-            visited = new bool[v + 1] {false};
-            path = new vector<int>;
+            visited = new bool[v + 1];
+            for (int i = 0; i <= v; i++) {
+                visited[i] = false;
+            }
         }
         
         ~UndirectedGraph() {
             delete[] adj;
             delete[] visited;
-            delete path;
         }
 
         void addEdge(int first, int second) {
@@ -29,27 +29,23 @@ class UndirectedGraph {
             adj[second].push_back(first);
         }
 
-        void dfs(int begin, int end) {
+        void dfs(int begin, int end, string path) {
+            path += to_string(begin) + " ";
+            visited[begin] = true;
             if (visited[end] == true) {
+                cout << path << endl;
                 return;
             }
-            visited[begin] = true;
-            path->push_back(begin);
             for (int v : adj[begin]) {
-                if (visited[v] == false) {
-                    dfs(v, end);
+                if (visited[v] == false && visited[end] == false) {
+                    dfs(v, end, path);
                 }
             }
         }
 
-        void dfsPath(int begin, int end) {
-            dfs(begin, end);
-            if (path->back() == end) {
-                for (int v : *path) {
-                    cout << v << " ";
-                }
-                cout << endl;
-            } else {
+        void dfsPathFinding(int begin, int end) {
+            dfs(begin, end, "");
+            if (visited[end] == false) {
                 cout << -1 << endl;
             }
         }
@@ -66,7 +62,7 @@ int main() {
             cin >> first >> second;
             graph.addEdge(first, second);
         }
-        graph.dfsPath(begin, end);
+        graph.dfsPathFinding(begin, end);
     }
     return 0;
 }
