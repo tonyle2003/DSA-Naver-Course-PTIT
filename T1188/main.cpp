@@ -10,8 +10,8 @@ class UndirectedGraph {
         int vertices;
     public:
         UndirectedGraph(int vertices) {
-            adj = new vector<int>[vertices + 1];
-            visited = new bool[vertices + 1] {false};
+            adj = new vector<int>[vertices + 10];
+            visited = new bool[vertices + 10] {false};
             this->vertices = vertices;
         }
 
